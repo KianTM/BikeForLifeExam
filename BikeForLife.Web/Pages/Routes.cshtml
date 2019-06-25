@@ -35,6 +35,10 @@
 
 <div class="form">
     <h2>Opret ny rute</h2>
+    @if (Model.BikeRoute != null)
+    {
+        <p>@Model.AddToDBMessage</p>
+    }
     <form asp-page="Routes">
         <label asp-for="BikeRoute.Name"></label>
         <input asp-for="BikeRoute.Name" />
