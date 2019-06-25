@@ -1,5 +1,7 @@
-﻿using System;
+﻿using RideService.Services;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 namespace BikeForLife.Entities
 {
@@ -16,5 +18,35 @@ namespace BikeForLife.Entities
         public string Country { get; set; }
         [Display(Name = "By")]
         public string City { get; set; }
+
+        public string GetIconUrl()
+        {
+            OpenWeatherMapAPI openWeatherMapAPI = new OpenWeatherMapAPI();
+            string iconUrl = "";
+            try
+            {
+                iconUrl = openWeatherMapAPI.GetIconUrl(City);
+            }
+            catch (WebException)
+            {
+                return @"\img\placeholder.png";
+            }
+            return iconUrl;
+        }
+
+        public string GetLocalTemperature()
+        {
+            OpenWeatherMapAPI openWeatherMapAPI = new OpenWeatherMapAPI();
+            double temp = 0.0;
+            try
+            {
+                temp = openWeatherMapAPI.GetCurrentTemperature(City);
+            }
+            catch (WebException)
+            {
+                return "N/A";
+            }
+            return $"{temp}°C";
+        }
     }
 }
