@@ -12,7 +12,7 @@
         <th>Sværhedsgrad</th>
         <th>Land</th>
         <th>By</th>
-        <th>Rediger</th>
+        <th>Vejr</th>
     </tr>
     <tbody>
         @{
@@ -25,7 +25,7 @@
                     <td>@bikeRoute.Country</td>
                     <td>@bikeRoute.City</td>
                     <td>
-                        <a href=""><i class="fa fa-edit" aria-hidden="true"></i></a>
+                        <img src="@bikeRoute.GetIconUrl()" alt="Vejrikon" style="width:50px; height:50px" /> @bikeRoute.GetLocalTemperature()
                     </td>
                 </tr>
             }
