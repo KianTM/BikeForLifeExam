@@ -16,6 +16,20 @@ namespace BikeForLife.Dal
             return HandleData(dataTable);
         }
 
+        public bool AddToDB(BikeRoute bikeRoute) // Adds a BikeRoute to the database
+        {
+            string sql = $"INSERT INTO BikeRoutes VALUES('{bikeRoute.Name}', {bikeRoute.Length}, {(int)bikeRoute.Difficulty}, '{bikeRoute.Country}', '{bikeRoute.City}')"; // Creates the SQL query used to add the BikeRoute to the database
+            try
+            {
+                ExecuteNonQuery(sql); // Tries to run the query
+            }
+            catch (Exception) // If the query fails, an exception is cast
+            {
+                return false; // Returns false if the code casts an exception
+            }
+            return true; // Returns true if the code runs succesfully with no exceptions
+        }
+
         private List<BikeRoute> HandleData(DataTable dataTable)
         {
             if (dataTable == null)

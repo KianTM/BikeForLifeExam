@@ -10,7 +10,7 @@ namespace BikeForLife.Entities
         public string Name { get; set; }
         public DateTime EnrollmentDate { get; set; }
         public Difficulty RideLevel { get; }
-        public IReadOnlyList<Ride> Rides { get; set; }
+        public IReadOnlyList<Ride> Rides { get; }
 
         public bool Add(Ride ride)
         {

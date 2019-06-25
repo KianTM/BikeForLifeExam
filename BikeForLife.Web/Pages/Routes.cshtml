@@ -35,19 +35,23 @@
 
 <div class="form">
     <h2>Opret ny rute</h2>
+    @if (Model.BikeRoute != null)
+    {
+        <p>@Model.AddToDBMessage</p>
+    }
     <form asp-page="Routes">
         <label asp-for="BikeRoute.Name"></label>
-        <input asp-for="BikeRoute.Name" />
+        <input asp-for="BikeRoute.Name" required />
         <label asp-for="BikeRoute.Length"></label>
-        <input asp-for="BikeRoute.Length" />
+        <input asp-for="BikeRoute.Length" type="number" min="0" required /> @*Currently only whole numbers are supported because lack of functionality for decimal placements.*@
         <label asp-for="BikeRoute.Difficulty"></label>
-        <select asp-for="BikeRoute.Difficulty" asp-items="Html.GetEnumSelectList<Difficulty>()">
+        <select asp-for="BikeRoute.Difficulty" asp-items="Html.GetEnumSelectList<Difficulty>()" required>
             <option selected="selected" value="">Vælg en sværhedsgrad</option>
         </select>
         <label asp-for="BikeRoute.Country"></label>
-        <input asp-for="BikeRoute.Country" />
+        <input asp-for="BikeRoute.Country" required/>
         <label asp-for="BikeRoute.City"></label>
-        <input asp-for="BikeRoute.City" />
+        <input asp-for="BikeRoute.City" required/>
         <button type="submit">Opret</button>
     </form>
 </div>

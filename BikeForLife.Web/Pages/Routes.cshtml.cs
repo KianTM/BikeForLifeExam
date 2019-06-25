@@ -14,7 +14,35 @@ namespace BikeForLife.Web.Pages
         [BindProperty]
         public BikeRoute BikeRoute { get; set; }
         public List<BikeRoute> BikeRoutes { get; set; } = new List<BikeRoute>();
+        public string AddToDBMessage { get; set; }
         public IActionResult OnGet()
+        {
+            return InitializeData();
+        }
+
+        public IActionResult OnPost()
+        {
+            BikeRouteRepository bikeRouteRepository = new BikeRouteRepository();
+            bool succesfullyAdded = false;
+
+            if (BikeRoute.Length > 0)
+            {
+                succesfullyAdded = bikeRouteRepository.AddToDB(BikeRoute);
+            }
+
+            if (succesfullyAdded)
+            {
+                AddToDBMessage = "Rute tilføjet";
+            }
+            else
+            {
+                AddToDBMessage = "Rute kunne ikke tilføjes";
+            }
+
+            return InitializeData();
+        }
+
+        public IActionResult InitializeData()
         {
             BikeRouteRepository bikeRouteRepository = new BikeRouteRepository();
             try
@@ -26,11 +54,6 @@ namespace BikeForLife.Web.Pages
                 return NotFound();
             }
             return Page();
-        }
-
-        public void OnPost()
-        {
-
         }
     }
 }
