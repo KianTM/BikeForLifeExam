@@ -16,6 +16,20 @@ namespace BikeForLife.Dal
             return HandleData(dataTable);
         }
 
+        public bool AddToDB(BikeRoute bikeRoute)
+        {
+            string sql = $"INSERT INTO BikeRoutes VALUES('{bikeRoute.Name}', {bikeRoute.Length}, {(int)bikeRoute.Difficulty}, '{bikeRoute.Country}', '{bikeRoute.City}')";
+            try
+            {
+                ExecuteNonQuery(sql);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
         private List<BikeRoute> HandleData(DataTable dataTable)
         {
             if (dataTable == null)

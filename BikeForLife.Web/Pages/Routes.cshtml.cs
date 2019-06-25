@@ -16,6 +16,17 @@ namespace BikeForLife.Web.Pages
         public List<BikeRoute> BikeRoutes { get; set; } = new List<BikeRoute>();
         public IActionResult OnGet()
         {
+            return InitializeData();
+        }
+
+        public IActionResult OnPost()
+        {
+            
+            return InitializeData();
+        }
+
+        public IActionResult InitializeData()
+        {
             BikeRouteRepository bikeRouteRepository = new BikeRouteRepository();
             try
             {
@@ -26,11 +37,6 @@ namespace BikeForLife.Web.Pages
                 return NotFound();
             }
             return Page();
-        }
-
-        public void OnPost()
-        {
-
         }
     }
 }
