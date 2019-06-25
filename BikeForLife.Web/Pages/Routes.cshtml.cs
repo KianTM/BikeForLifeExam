@@ -23,7 +23,13 @@ namespace BikeForLife.Web.Pages
         public IActionResult OnPost()
         {
             BikeRouteRepository bikeRouteRepository = new BikeRouteRepository();
-            bool succesfullyAdded = bikeRouteRepository.AddToDB(BikeRoute);
+            bool succesfullyAdded = false;
+
+            if (BikeRoute.Length > 0)
+            {
+                succesfullyAdded = bikeRouteRepository.AddToDB(BikeRoute);
+            }
+
             if (succesfullyAdded)
             {
                 AddToDBMessage = "Rute tilføjet";
@@ -32,6 +38,7 @@ namespace BikeForLife.Web.Pages
             {
                 AddToDBMessage = "Rute kunne ikke tilføjes";
             }
+
             return InitializeData();
         }
 
