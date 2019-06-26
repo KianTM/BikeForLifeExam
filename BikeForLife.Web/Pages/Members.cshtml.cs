@@ -12,15 +12,18 @@ namespace BikeForLife.Web.Pages
     public class MembersModel : PageModel
     {
         public List<Member> Members { get; set; }
+        public List<Ride> Rides { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            InitializeData();
+            return InitializeData();
         }
 
         public IActionResult InitializeData()
         {
             MemberRepository memberRepository = new MemberRepository();
+            RideRepository rideRepository = new RideRepository();
+
             try
             {
                 Members = memberRepository.GetAll();
@@ -29,6 +32,27 @@ namespace BikeForLife.Web.Pages
             {
                 return NotFound();
             }
+
+            try
+            {
+                Rides = rideRepository.GetAll();
+            }
+            catch (InvalidOperationException)
+            {
+                return NotFound();
+            }
+
+            foreach (Member member in Members)
+            {
+                foreach (Ride ride in Rides)
+                {
+                    if (ride.Member.Id == member.Id)
+                    {
+                        member.Add(ride);
+                    }
+                }
+            }
+
             return Page();
         }
     }

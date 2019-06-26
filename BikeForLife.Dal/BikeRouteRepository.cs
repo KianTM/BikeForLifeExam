@@ -18,7 +18,7 @@ namespace BikeForLife.Dal
 
         public BikeRoute GetWithId(int id)
         {
-            string sql = $"SELECT * FROM BikeRoutes WHERE MemberId={id}";
+            string sql = $"SELECT * FROM BikeRoutes WHERE BikeRouteId={id}";
             DataTable dataTable = ExecuteQuery(sql);
             if (dataTable == null)
                 throw new InvalidOperationException($"DataTable was null. SQL string is: {sql}");

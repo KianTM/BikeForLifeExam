@@ -7,7 +7,7 @@ using BikeForLife.Entities;
 
 namespace BikeForLife.Dal
 {
-    class RideRepository : BaseRepository
+    public class RideRepository : BaseRepository
     {
         public List<Ride> GetAll()
         {
@@ -39,7 +39,7 @@ namespace BikeForLife.Dal
                 BikeRouteRepository bikeRouteRepository = new BikeRouteRepository();
                 MemberRepository memberRepository = new MemberRepository();
                 int routeId = (int)row["BikeRouteId"];
-                int memberId = (int)row[""];
+                int memberId = (int)row["MemberId"];
                 Rides.Add(new Ride()
                 {
                     Id = (int)row["RideId"],
