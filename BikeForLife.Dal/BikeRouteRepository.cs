@@ -16,6 +16,20 @@ namespace BikeForLife.Dal
             return HandleData(dataTable);
         }
 
+        public BikeRoute GetWithId(int id)
+        {
+            string sql = $"SELECT * FROM BikeRoutes WHERE MemberId={id}";
+            DataTable dataTable = ExecuteQuery(sql);
+            if (dataTable == null)
+                throw new InvalidOperationException($"DataTable was null. SQL string is: {sql}");
+            List<BikeRoute> routes = HandleData(dataTable);
+            if (routes.Count == 0)
+            {
+                return null;
+            }
+            return routes[0];
+        }
+
         public bool AddToDB(BikeRoute bikeRoute) // Adds a BikeRoute to the database
         {
             string sql = $"INSERT INTO BikeRoutes VALUES('{bikeRoute.Name}', {bikeRoute.Length}, {(int)bikeRoute.Difficulty}, '{bikeRoute.Country}', '{bikeRoute.City}')"; // Creates the SQL query used to add the BikeRoute to the database
