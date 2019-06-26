@@ -1,0 +1,27 @@
+﻿@page
+@model BikeForLife.Web.Pages.MembersModel
+@{
+    ViewData["Title"] = "Members";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Medlemmer</h1>
+<table>
+    <tr>
+        <th>Navn</th>
+        <th>Startdato</th>
+        <th>Niveau</th>
+    </tr>
+    <tbody>
+        @{
+            foreach (Member member in Model.Members)
+            {
+                <tr>
+                    <td>@member.Name</td>
+                    <td>@member.EnrollmentDate.ToLongDateString()</td>
+                    <td>@member.RideLevel</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

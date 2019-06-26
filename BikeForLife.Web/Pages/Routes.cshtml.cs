@@ -15,6 +15,7 @@ namespace BikeForLife.Web.Pages
         public BikeRoute BikeRoute { get; set; }
         public List<BikeRoute> BikeRoutes { get; set; } = new List<BikeRoute>();
         public string AddToDBMessage { get; set; }
+
         public IActionResult OnGet()
         {
             return InitializeData();
