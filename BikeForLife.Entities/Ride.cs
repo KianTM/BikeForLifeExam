@@ -19,11 +19,11 @@ namespace BikeForLife.Entities
                 {
                     route = value;
                 }
-                else if ((int)Member.RideLevel >= (int)route.Difficulty) // If a Member exists, but their RideLevel is higher than or equal to the route's difficulty, then the route is added
+                else if ((int)Member.RideLevel >= (int)value.Difficulty) // If a Member exists, but their RideLevel is higher than or equal to the route's difficulty, then the route is added
                 {
                     route = value;
                 }
-                else if ((int)route.Difficulty > (int)Member.RideLevel) // If a Member exists, but their RideLevel is lower than the route's difficulty, then an exception is thrown.
+                else if ((int)value.Difficulty > (int)Member.RideLevel) // If a Member exists, but their RideLevel is lower than the route's difficulty, then an exception is thrown.
                 {
                     throw new InvalidOperationException("Cannot add Route because a Member exists with a too low RideLevel.");
                 }
@@ -38,11 +38,11 @@ namespace BikeForLife.Entities
                 {
                     member = value;
                 }
-                else if ((int)member.RideLevel >= (int)Route.Difficulty) // If a BikeRoute exists, but the member's RideLevel is higher than or equal to the Route's difficulty, then the member is added
+                else if ((int)value.RideLevel >= (int)Route.Difficulty) // If a BikeRoute exists, but the member's RideLevel is higher than or equal to the Route's difficulty, then the member is added
                 {
                     member = value;
                 }
-                else if ((int)Route.Difficulty > (int)member.RideLevel) // If a Route exists, but the member's RideLevel is lower than the Route's Difficulty, then an exception is thrown.
+                else if ((int)Route.Difficulty > (int)value.RideLevel) // If a Route exists, but the member's RideLevel is lower than the Route's Difficulty, then an exception is thrown.
                 {
                     throw new InvalidOperationException("Cannot add Member because a Route exists with a too high Difficulty.");
                 }
