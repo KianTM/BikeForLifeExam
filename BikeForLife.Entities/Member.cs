@@ -5,13 +5,20 @@ using System.Text;
 
 namespace BikeForLife.Entities
 {
-    class Member
+    public class Member
     {
         private List<Ride> rides = new List<Ride>();
+
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime EnrollmentDate { get; set; }
-        public Difficulty RideLevel { get; }
+        public Difficulty RideLevel
+        {
+            get
+            {
+                return CalculateRideLevel();
+            }
+        }
         public IReadOnlyList<Ride> Rides
         {
             get
@@ -30,7 +37,7 @@ namespace BikeForLife.Entities
             return true;
         }
 
-        private Difficulty GetRideLevel() // Uses the list of rides to find out what the member's RideLevel is, then returns it as a Difficulty enum
+        private Difficulty CalculateRideLevel() // Uses the list of rides to find out what the member's RideLevel is, then returns it as a Difficulty enum
         {
             int difficultyEasy = 0;   // Variables used for counting
             int difficultyNormal = 0; //   how many rides of specific
